@@ -389,3 +389,41 @@ htmlcov/
 docs/_locale/_pot/.doctrees/
 
 PC_club/PC_club.pyproj
+*.pyproj
+
+
+# Виртуальная среда
+venv/
+.venv/
+env/
+
+# Файлы конфигурации Visual Studio
+.vscode/
+*.code-workspace
+
+# Файлы кэша и временные файлы Python
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+*.egg
+.python-version
+
+# Файлы кэша и логи Bottle
+*.log
+*.sqlite
+*.db
+
+# Файлы кэша тестов
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Файлы зависимостей
+requirements.txt
+!requirements.in
+
+# Файлы сборки и дистрибуции
+dist/
+build/
+*.spec
