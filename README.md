@@ -26,9 +26,9 @@
 - Установить зависимости (pip install -r requirements.txt)
 
 # Разработчики
-**DanielSeerN** - **Карих Д. В.** - [DanielSeern](https://github.com/DanielSeerN)
-**eklender** - **Бао А. Ю.** - [eklender](https://github.com/eklender)
-**wedrawtheloop** - **Буравлёв М. А.** - [wedrawtheloop](https://github.com/wedrawtheloop)
+- **DanielSeerN** - **Карих Д. В.** - [DanielSeern](https://github.com/DanielSeerN)
+- **eklender** - **Бао А. Ю.** - [eklender](https://github.com/eklender)
+- **wedrawtheloop** - **Буравлёв М. А.** - [wedrawtheloop](https://github.com/wedrawtheloop)
 
 # Благодарности
 Опалевой У. С. за отличную лабораторную работу №2-4 и помощь с gitignore
