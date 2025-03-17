@@ -387,3 +387,5 @@ htmlcov/
 .pytest_cache
 
 docs/_locale/_pot/.doctrees/
+
+PC_club/PC_club.pyproj
