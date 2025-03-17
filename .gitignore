@@ -389,8 +389,10 @@ htmlcov/
 docs/_locale/_pot/.doctrees/
 
 PC_club/PC_club.pyproj
+*.pyproj.user
+PC_club/PC_club.pyproj.user
 *.pyproj
-
+PC_club.pyproj.user
 
 # Виртуальная среда
 venv/
