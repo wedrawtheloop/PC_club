@@ -46,16 +46,7 @@
     }
 
     .about-text {
-        flex: 1;
-    }
-
-    .mission-section {
-        background: linear-gradient(135deg, #6a11cb, #2575fc);
-        color: #fff;
-        padding: 40px;
-        border-radius: 15px;
-        margin-top: 40px;
-        text-align: center;
+        flex: 1; /* Текст занимает оставшееся пространство */
     }
 
     .mission-section h3 {
