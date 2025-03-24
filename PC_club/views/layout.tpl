@@ -1,3 +1,18 @@
+
+<style>
+    .logo-img {
+        width: 50px;
+        height: auto;
+        border-radius: 5px;
+    }
+
+
+
+
+    
+
+</style>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +33,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">Компьютерный клуб</a>
+                <a href="/" class="navbar-brand">
+                    <img class="logo-img" src = "/static/images/logo.jpg"/>
+                </a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+            <div class="navbar-collapse collapse nav-style" >
+                <ul class="nav navbar-nav navbar">
                     <li><a href="/home">Главная</a></li>
                     <li><a href="/about">О клубе</a></li>
                     <li><a href="/contact">Contact</a></li>
