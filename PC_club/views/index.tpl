@@ -227,6 +227,6 @@
             Участвуйте в наших турнирах по популярным играм и выигрывайте призы! 
             Следите за расписанием и не пропустите следующее событие.
         </p>
-        <a href="/tournaments" class="cta-button primary-btn">Участвовать</a>
+        <a href="https://esportsens.ru/articles/materials/turniry-v-kompyuternyh-klubah" class="cta-button primary-btn">Участвовать</a>
     </div>
 </div>
