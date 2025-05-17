@@ -29,11 +29,27 @@ class PartnerForm:
         with open(PARTNERS_FILE, 'w', encoding='utf-8') as f:
             json.dump(partners, f, ensure_ascii=False, indent=4)
 
+    def is_name_exists(self, name: str) -> bool:
+            """Проверяет, существует ли компания с таким названием"""
+            partners = self.load_partners()
+            return any(
+                partner['name'].strip().lower() == name.strip().lower()
+                for partner in partners
+            )
+
+    def is_phone_exists(self, phone: str) -> bool:
+        """Проверяет, существует ли компания с таким телефоном"""
+        partners = self.load_partners()
+        # Нормализуем номер (удаляем все, кроме цифр)
+        normalized_phone = re.sub(r'[^\d]', '', phone)
+        return any(
+            re.sub(r'[^\d]', '', partner['phone']) == normalized_phone
+            for partner in partners
+        )
+
     @staticmethod
     def is_valid_name(name: str) -> bool:
-        """
-        Проверяет, что название соответствует требованиям.
-        """
+        """Проверяет, что название соответствует требованиям"""
         NAME_PATTERN = re.compile(
             r'''
             ^                                       # начало строки
@@ -48,19 +64,30 @@ class PartnerForm:
     
     @staticmethod
     def is_valid_phone(phone: str) -> bool:
-        """
-        Проверяет формат телефонного номера.
-        """
+        """Проверяет формат телефонного номера"""
         PHONE_PATTERN = re.compile(
-            r'^(\+7|\+8|7|8)?[\s]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$'
+            r'''
+            ^               # начало строки
+            (\+7|\+8|7|8)?  # группа с опциональными кодами страны
+            [\s]?           # опциональный пробел
+            \(?             # опциональная скобка
+            [489][0-9]{2}   # группа кодов оперторов, которая должна начинаться с 4/8/9
+            \)?             # опциональная скобка
+            [\s\-]?         # опциональнйы дефис
+            [0-9]{3}        # первые 3 цифры номера
+            [\s\-]?         # опциональный дефис
+            [0-9]{2}        # следующие 2 цифры
+            [\s\-]?         # опциональны дефис
+            [0-9]{2}        # последние 2 цифры
+            $               # конец строки
+            ''',
+            re.VERBOSE
         )
         return bool(PHONE_PATTERN.match(phone))
 
     @staticmethod
     def is_valid_description(description: str) -> bool:
-        """
-        Проверяет, что описание соответствует требованиям.
-        """
+        """Проверяет, что описание соответствует требованиям."""
         DESCRIPTION_PATTERN = re.compile(
             r'''
             ^                                       # начало строки
@@ -75,6 +102,7 @@ class PartnerForm:
 
 
     def validate(self, request):
+        """Проверка данных формы с проверкой на дубли"""
         self.errors = {}
         
         # Получаем данные из формы и очищаем их
@@ -82,17 +110,23 @@ class PartnerForm:
         self.form_data['phone'] = request.forms.getunicode('phone', '').strip()
         self.form_data['description'] = request.forms.getunicode('description', '').strip()
     
-        # Валидация
+        # Валидация названия
         if not self.form_data['name']:
             self.errors['name'] = 'Введите название компании'
         elif not self.is_valid_name(self.form_data['name']):
             self.errors['name'] = 'Название должно содержать минимум 2 символа, начинаться с буквы и не состоять только из цифр или символов'
+        elif self.is_name_exists(self.form_data['name']):
+            self.errors['name'] = 'Компания с таким названием уже существует'
 
+        # Валидация телефона
         if not self.form_data['phone']:
             self.errors['phone'] = 'Введите телефон'
         elif not self.is_valid_phone(self.form_data['phone']):
             self.errors['phone'] = 'Неверный формат телефона'
-
+        elif self.is_phone_exists(self.form_data['phone']):
+            self.errors['phone'] = 'Этот телефон уже зарегистрирован'
+            
+        # Валидация описания
         if not self.form_data['description']:
             self.errors['description'] = 'Введите описание'
         elif not self.is_valid_description(self.form_data['description']):
