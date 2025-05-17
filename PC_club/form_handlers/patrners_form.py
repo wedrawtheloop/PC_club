@@ -15,6 +15,7 @@ class PartnerForm:
         }
 
     def load_partners(self):
+        """Выгрузка данных из файла"""
         if not os.path.exists(PARTNERS_FILE):
             return []
         try:
@@ -24,6 +25,7 @@ class PartnerForm:
             return[]
 
     def save_partners(self, partners):
+        """Сохранения данных в файл"""
         with open(PARTNERS_FILE, 'w', encoding='utf-8') as f:
             json.dump(partners, f, ensure_ascii=False, indent=4)
 
