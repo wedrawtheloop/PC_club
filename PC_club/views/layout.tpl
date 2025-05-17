@@ -1,7 +1,7 @@
 
 <style>
     .logo-img {
-        width: 50px;
+        width: 25px;
         height: auto;
         border-radius: 5px;
     }
@@ -21,6 +21,8 @@
     <title>{{ title }} - My Bottle Application</title>
     <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/about.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/content/partners.css"
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
 </head>
 
@@ -41,7 +43,8 @@
                 <ul class="nav navbar-nav navbar">
                     <li><a href="/home">Главная</a></li>
                     <li><a href="/about">О клубе</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/partners">Партнеры</a></li>
+                    <li><a href="/contact">Контакты</a></li>
                 </ul>
             </div>
         </div>
@@ -51,7 +54,7 @@
         {{!base}}
         <hr />
         <footer>
-            <p>&copy; {{ year }} - Компьютерный клуб "GameOver"</p>
+            <p>&copy; {{ year }} - Компьютерный клуб "Cyber Nexus"</p>
         </footer>
     </div>
 
