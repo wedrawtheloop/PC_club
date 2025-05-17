@@ -1,0 +1,229 @@
+/* Основные стили */
+.partners-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 25px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    color: #2d3748;
+    font-size: 25px;
+    line-height: 1.6;
+}
+
+.partners-header {
+    margin-bottom: 35px;
+}
+
+    .partners-header h1 {
+        font-size: 25px;
+        margin-bottom: 10px;
+        color: #1a365d;
+        font-weight: 600;
+    }
+
+/* Двухколоночный макет */
+.partners-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 35px;
+}
+
+/* Секция формы */
+.add-partner-section {
+    position: sticky;
+    top: 25px;
+    height: fit-content;
+}
+
+.add-partner-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+}
+
+/* Секция списка */
+.partners-list-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+}
+
+.partners-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.partners-count {
+    background: #edf2f7;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Форма */
+.partner-form {
+    display: grid;
+    gap: 25px;
+}
+
+.section-title {
+    font-size 18px; /* Увеличен */
+    color: #2d3748;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+}
+
+.form-group {
+    display: grid;
+    gap: 8px;
+}
+
+    .form-group label {
+        font-weight: 600;
+        font-size: 15px; 
+        color: #4a5568;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 14px 16px; /* Увеличен */
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 15px; /* Увеличен */
+        transition: all 0.2s;
+    }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+            outline: none;
+        }
+
+    .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+.error-field {
+    border-color: #f56565 !important;
+}
+
+.error-message {
+    color: #f56565;
+    font-size: 15px; /* Увеличен */
+}
+
+.submit-button {
+    background: #4299e1;
+    color: white;
+    border: none;
+    padding: 16px;
+    font-size: 15px; /* Увеличен */
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+    .submit-button:hover {
+        background: #3182ce;
+        transform: translateY(-2px);
+    }
+
+/* Карточки компаний */
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Ширина увеличена */
+    gap: 25px;
+}
+
+.partner-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s;
+}
+
+    .partner-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+.partner-card-header {
+    background: #4299e1;
+    color: white;
+    padding: 18px;
+    border-radius: 10px 10px 0 0;
+}
+
+    .partner-card-header h3 {
+        margin: 0;
+        font-size: 15px; /* Увеличен */
+        font-weight: 600;
+    }
+
+.partner-card-body {
+    padding: 18px;
+}
+
+.partner-field {
+    margin-bottom: 16px;
+}
+
+.field-label {
+    display: block;
+    font-weight: 600;
+    font-size: 12px; /* Увеличен */
+    color: #4a5568;
+    margin-bottom: 6px;
+}
+
+.field-value {
+    font-size: 12px; /* Увеличен */
+    color: #2d3748;
+    line-height: 1.6;
+}
+
+.partner-date {
+    font-size: 10px; /* Увеличен */
+    color: #718096;
+    margin-top: 15px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px;
+    color: #718096;
+    font-size: 1.2rem;
+}
+
+.alert {
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    background: #fff5f5;
+    border-left: 5px solid #f56565;
+}
+
+    .alert h4 {
+        margin: 0 0 10px 0;
+        font-size: 1.2rem; /* Увеличен */
+        color: #c53030;
+    }
+
+    .alert ul {
+        margin: 0;
+        padding-left: 25px;
+        font-size: 1.1rem; /* Увеличен */
+    }
+
+    .alert li {
+        margin-bottom: 5px;
+    }

@@ -1,0 +1,132 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+h2 {
+    font-size: 36px;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+h3 {
+    font-size: 28px;
+    color: #34495e;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+    .about-content img {
+        max-width: 400px;
+        height: auto;
+        border-radius: 15px;
+    }
+
+.about-text {
+    flex: 1;
+}
+
+.mission-section {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+    .mission-section h3 {
+        color: #fff;
+        margin-bottom: 20px;
+    }
+
+    .mission-section p {
+        font-size: 20px;
+        line-height: 1.8;
+    }
+
+.why-us-section {
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.advantages-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+    .advantages-list li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 15px;
+    }
+
+        .advantages-list li::before {
+            content: "✔";
+            color: #27ae60;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+.cta-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background: #e74c3c;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+    .cta-button:hover {
+        background: #c0392b;
+    }
+
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+        .about-content img {
+            max-width: 100%;
+        }
+}
+
+footer {
+    background: #2c3e50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 60px;
+}
+
+    footer p {
+        margin: 0;
+    }
