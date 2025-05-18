@@ -55,3 +55,12 @@ def partners():
         errors=form.errors,
         form_data=form.form_data
     )
+
+@route('/articles')
+@view('articles')
+def articles():
+    return dict(
+        title = 'Articles',
+        year = datetime.now().year,
+        articles = []
+    )

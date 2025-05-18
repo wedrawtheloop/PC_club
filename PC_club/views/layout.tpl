@@ -44,6 +44,7 @@
                     <li><a href="/home">Главная</a></li>
                     <li><a href="/about">О клубе</a></li>
                     <li><a href="/partners">Партнеры</a></li>
+                    <li><a href="/articles">Полезные статьи</a><li>
                     <li><a href="/contact">Контакты</a></li>
                 </ul>
             </div>
