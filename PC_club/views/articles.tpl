@@ -1,7 +1,6 @@
 % rebase('layout.tpl', title='Статьи', year=year)
 
 <style>
-    /* Общие стили статей (как в предыдущем варианте) */
     .articles-container {
         margin: 40px 0;
     }
@@ -15,7 +14,6 @@
         transition: all 0.3s ease;
     }
     
-    /* Стили формы (адаптированные под ваш дизайн) */
     .form-card {
         background: #fff;
         border-radius: 15px;
@@ -73,18 +71,22 @@
         transition: all 0.3s ease;
     }
     
-    /* Анимация при наведении как в вашем дизайне */
     .submit-btn:hover {
         background: #c0392b;
         transform: scale(1.05);
     }
     
-    /* Разделитель */
     .section-divider {
         border: none;
         height: 1px;
         background: linear-gradient(to right, transparent, #ddd, transparent);
         margin: 50px 0;
+    }
+    
+    .error-message {
+        color: #e74c3c;
+        margin-top: 5px;
+        font-size: 14px;
     }
 </style>
 
@@ -95,28 +97,43 @@
         <form action="/articles" method="POST" id="article-form">
             <div class="form-group">
                 <label for="title" class="form-label">Заголовок</label>
-                <input type="text" id="title" name="title" class="form-input" required>
+                <input type="text" id="title" name="title" class="form-input" value = "{{form_data.get('title','')}}" required>
+                % if errors.get('title'):
+                    <div class="error-message">
+                        <p>{{errors['title']}}</p>
+                    </div>
+                % end
             </div>
             
             <div class="form-group">
                 <label for="author" class="form-label">Автор</label>
-                <input type="text" id="author" name="author" class="form-input" required>
+                <input type="text" id="author" name="author" class="form-input" value = "{{form_data.get('author','')}}" required>
+                % if errors.get('author'):
+                    <div class="error-message">
+                        <p>{{errors['author']}}</p>
+                    </div>
+                % end
             </div>
             
             <div class="form-group">
                 <label for="text" class="form-label">Текст статьи</label>
-                <textarea id="text" name="text" class="form-input form-textarea" required></textarea>
+                <textarea id="text" name="text" class="form-input form-textarea"  required>{{form_data.get('text','')}}</textarea>
+                % if errors.get('text'):
+                    <div class="error-message">
+                        <p>{{errors['text']}}</p>
+                    </div>
+                % end
             </div>
             
             <div class="form-group">
-                <label for="date" class="form-label">Дата</label>
-                <input type="date" id="date" name="date" class="form-input" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="phone" class="form-label">Контактный телефон</label>
-                <input type="tel" id="phone" name="phone" class="form-input" 
-                       placeholder="+7 (XXX) XXX-XX-XX" required>
+                <label for="phone_number" class="form-label">Контактный телефон</label>
+                <input type="tel" id="phone_number" name="phone_number" class="form-input" 
+                       placeholder="+7 (XXX) XXX-XX-XX" value = "{{form_data.get('phone_number','')}}" required>
+                % if errors.get('phone_number'):
+                    <div class="error-message">
+                        <p>{{errors['phone_number']}}</p>
+                    </div>
+                % end
             </div>
             
             <button type="submit" class="submit-btn">Опубликовать статью</button>
@@ -130,9 +147,9 @@
     
     <div class="articles-container">
         % if not articles:
-        <div class="article-card">
-            <p>Пока нет статей. Будьте первым!</p>
-        </div>
+            <div class="article-card">
+                <p>Пока нет статей. Будьте первым!</p>
+            </div>
         % else:
             % for article in articles:
             <div class="article-card">

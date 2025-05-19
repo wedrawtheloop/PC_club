@@ -19,28 +19,31 @@ class ArticleForm:
         except:
             json_data = []
 
+        json_data = sorted(json_data, key=lambda x: x['date'], reverse=True)
         return json_data
 
     def save_data(self):
-        with open(ARTICLE_FILE,'w') as json_file:
-            json.dump(self.data,json_file)
+        with open(ARTICLE_FILE,'w', encoding='utf-8') as json_file:
+            json.dump(self.data,json_file, ensure_ascii=False, indent=4)
 
-    def __is_author_valid(author : str) -> bool:
-        author_pattern = r'^[a-zA-Zа-яА-ЯёЁ\s]+$'
+
+
+    def __is_author_valid(self,author : str) -> bool:
+        author_pattern = r'^[a-zA-ZР°-СЏРђ-РЇС‘РЃ\s]+$'
 
         if not author.strip():
             return False
         if not re.fullmatch(author_pattern,author):
             return False
 
-        if len(author) < 5 or len(str) > 30:
+        if len(author) < 5 or len(author) > 30:
             return False
         
         return True
 
 
-    def __is_title_valid(title : str) -> bool:
-        title_pattern = r'^[a-zA-Zа-яА-ЯёЁ\s0-9?!&%#$@]+$'
+    def __is_title_valid(self,title : str) -> bool:
+        title_pattern = r'^[a-zA-ZР°-СЏРђ-РЇС‘РЃ\s0-9?!&%#$@]+$'
 
         if not title.strip():
             return False
@@ -48,22 +51,22 @@ class ArticleForm:
         if not re.fullmatch(title_pattern, title):
             return False
 
-        if len(title) < 10:
+        if len(title) < 10 or len(title) >= 60:
             return False
 
         return True
 
-    def __is_text_valid(text : str) -> bool:
+    def __is_text_valid(self,text : str) -> bool:
 
         if not text.strip():
             return False
 
-        if len(text) < 10 or len(text) >= 60:
+        if len(text) < 50:
             return False
 
         return True
 
-    def __is_phone_number_valid(phone_number : str) -> bool:
+    def __is_phone_number_valid(self,phone_number : str) -> bool:
         phone_pattern = r'^(\+7|\+8|7|8)?[\s]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$'
 
         if not re.fullmatch(phone_pattern, phone_number):
@@ -72,19 +75,23 @@ class ArticleForm:
         return True
 
     def is_data_valid(self,new_article : dict) -> bool:
+        self.errors = {}
         author = new_article['author']
         title = new_article['title']
         text = new_article['text']
         phone_number = new_article['phone_number']
 
         if not self.__is_author_valid(author):
-            self.errors['author'] = 'Должно содержать только буквы. Длина должна быть не меньше 5 и не больше 30'
+            self.errors['author'] = 'Р”РѕР»Р¶РЅРѕ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ РјРµРЅРµРµ 5 Рё РЅРµ Р±РѕР»СЊС€Рµ 30 СЃРёРјРІРѕР»РѕРІ. Р”РѕРїСѓСЃС‚РёРјС‹ С‚РѕР»СЊРєРѕ Р±СѓРєРІС‹'
 
         if not self.__is_text_valid(text):
-            self.errors['text'] = 'Текст должен содержать не менее 100 символов'
+            self.errors['text'] = 'РўРµРєСЃС‚ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµ РєРѕСЂРѕС‡Рµ 50 СЃРёРјРІРѕР»РѕРІ'
 
         if not self.__is_title_valid(title):
-            self.errors['title'] = 'Заголовок должен содержать не менее 10 символов и не больше 60. Допустимые символы: ?!&%#$@'
+            self.errors['title'] = 'Р—Р°РіРѕР»РѕРІРѕРє РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµ РєРѕСЂРѕС‡Рµ 10 СЃРёРјРІРѕР»РѕРІ Рё РЅРµ РґР»РёРЅРЅРµРµ 60. Р”РѕРїСѓСЃС‚РёРјС‹Рµ СЃРїРµС†. СЃРёРјРІРѕР»С‹: ?!&%#$@'
+        
+        if not self.__is_phone_number_valid(phone_number):
+            self.errors['phone_number'] = 'РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚'
 
         return not self.errors
 
