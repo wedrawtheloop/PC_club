@@ -28,7 +28,7 @@ class ArticleForm:
 
 
 
-    def __is_author_valid(self,author : str) -> bool:
+    def is_author_valid(self,author : str) -> bool:
         author_pattern = r'^[a-zA-Zа-яА-ЯёЁ\s]+$'
 
         if not author.strip():
@@ -42,8 +42,8 @@ class ArticleForm:
         return True
 
 
-    def __is_title_valid(self,title : str) -> bool:
-        title_pattern = r'^[a-zA-Zа-яА-ЯёЁ\s0-9?!&%#$@]+$'
+    def is_title_valid(self,title : str) -> bool:
+        title_pattern = r'^[a-zA-Zа-яА-ЯёЁ\s0-9!@#$%^&*()_+-=.,/?]+$'
 
         if not title.strip():
             return False
@@ -56,7 +56,7 @@ class ArticleForm:
 
         return True
 
-    def __is_text_valid(self,text : str) -> bool:
+    def is_text_valid(self,text : str) -> bool:
 
         if not text.strip():
             return False
@@ -66,9 +66,8 @@ class ArticleForm:
 
         return True
 
-    def __is_phone_number_valid(self,phone_number : str) -> bool:
-        phone_pattern = r'^(\+7|\+8|7|8)?[\s]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$'
-
+    def is_phone_number_valid(self,phone_number : str) -> bool:
+        phone_pattern = r'^(\+7|\+8|7|8)[\s\-]?\(?[0-9]{3}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$'
         if not re.fullmatch(phone_pattern, phone_number):
             return False
 
@@ -81,16 +80,16 @@ class ArticleForm:
         text = new_article['text']
         phone_number = new_article['phone_number']
 
-        if not self.__is_author_valid(author):
+        if not self.is_author_valid(author):
             self.errors['author'] = 'Должно содержать не менее 5 и не больше 30 символов. Допустимы только буквы'
 
-        if not self.__is_text_valid(text):
+        if not self.is_text_valid(text):
             self.errors['text'] = 'Текст должен быть не короче 50 символов'
 
-        if not self.__is_title_valid(title):
-            self.errors['title'] = 'Заголовок должен быть не короче 10 символов и не длиннее 60. Допустимые спец. символы: ?!&%#$@'
+        if not self.is_title_valid(title):
+            self.errors['title'] = 'Заголовок должен быть не короче 10 символов и не длиннее 60. Допустимые спец. символы: !@#$%^&*()_+-=..,>/?'
         
-        if not self.__is_phone_number_valid(phone_number):
+        if not self.is_phone_number_valid(phone_number):
             self.errors['phone_number'] = 'Неверный формат'
 
         return not self.errors
